@@ -1,4 +1,4 @@
 package com.stroygen.urdisauthservice.dto;
 
-public record MemberDto(Long id, String email, String role) {
+public record MemberDto(String id, String email, String role) {
 }

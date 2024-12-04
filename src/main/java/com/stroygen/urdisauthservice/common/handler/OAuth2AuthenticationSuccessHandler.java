@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -30,7 +31,8 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
         OAuth2User user = (OAuth2User) authentication.getPrincipal();
         String email = user.getAttribute("email");
         // 등록된 유저인지 확인
-        MemberDto memberDto = authService.getMemberByEmail(email);
+        MemberDto memberDto = new MemberDto(UUID.randomUUID().toString(), email, "ROLE_ADMIN");
+//        MemberDto memberDto = authService.getMemberByEmail(email);
         if (memberDto == null) { // 등록 안 된 유저라면 등록 페이지로 이동
             response.sendRedirect("/members/register");
             return;
@@ -41,6 +43,5 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
         tokenService.setAccessTokenCookie(response, accessToken);
         // 레디스에서 액세스토큰: 리프레시 토큰 저장
         tokenService.saveRefreshTokenOnRedis(accessToken, refreshToken);
-        response.sendRedirect("/login/success");
     }
 }

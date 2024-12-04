@@ -2,7 +2,6 @@ package com.stroygen.urdisauthservice.service;
 
 import com.stroygen.urdisauthservice.dto.MemberDto;
 import com.stroygen.urdisauthservice.webClient.MemberClient;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
