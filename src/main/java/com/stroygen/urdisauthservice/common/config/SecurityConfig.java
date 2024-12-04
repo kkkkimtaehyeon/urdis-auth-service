@@ -20,7 +20,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(requests -> requests
                 .requestMatchers("/").permitAll()
-                .requestMatchers("/login", "/oauth2/authorization/kakao").permitAll()
+                .requestMatchers("/oauth2/authorization/kakao").permitAll()
                 .anyRequest().authenticated()
         );
         http.oauth2Login(oauthLogin -> oauthLogin
